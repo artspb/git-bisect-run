@@ -30,7 +30,7 @@ class GitBisectRunInLogAction : DumbAwareAction() {
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
         if (project.isDisposed) return
-        val commits = e.getRequiredData(VcsLogDataKeys.VCS_LOG_COMMIT_SELECTION).commits
+        val commits = e.getData(VcsLogDataKeys.VCS_LOG_COMMIT_SELECTION)?.commits ?: return
         val file = commits.firstOrNull()?.root ?: e.getData(CommonDataKeys.VIRTUAL_FILE)
         val bad = commits.firstOrNull()?.hash?.asString()
         val good = commits.lastOrNull()?.hash?.asString()

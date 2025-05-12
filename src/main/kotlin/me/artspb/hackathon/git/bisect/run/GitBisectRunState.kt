@@ -27,10 +27,10 @@ import com.intellij.openapi.util.text.StringUtil
 import com.intellij.openapi.vcs.VcsNotifier
 import com.intellij.openapi.vcs.history.VcsRevisionNumber
 import com.intellij.openapi.vfs.VirtualFile
+import com.intellij.vcs.log.ui.actions.ShowCommitInLogAction
 import com.intellij.xml.util.XmlStringUtil
 import git4idea.GitRevisionNumber
 import git4idea.GitUtil
-import git4idea.log.GitShowCommitInLogAction
 import git4idea.repo.GitRepository
 
 @Suppress("PrivatePropertyName")
@@ -311,8 +311,8 @@ class GitBisectRunState(
         val checkout = NotificationAction.create("Checkout") { _, _ ->
             cleanUpAfterBisect(project, repository, "[$revision]")
         }
-        val show = NotificationAction.create("Show in Git log") { event, _ ->
-            object : GitShowCommitInLogAction() {
+        @Suppress("UnstableApiUsage") val show = NotificationAction.create("Show in Git log") { event, _ ->
+            object : ShowCommitInLogAction() {
                 override fun getRevisionNumber(event: AnActionEvent): VcsRevisionNumber = GitRevisionNumber(revision)
             }.actionPerformed(event)
         }
@@ -325,7 +325,7 @@ class GitBisectRunState(
     }
 
     private fun createNotification(title: String, description: String, type: NotificationType) =
-        VcsNotifier.IMPORTANT_ERROR_NOTIFICATION.createNotification(title, description, type)
+        VcsNotifier.importantNotification().createNotification(title, description, type)
 
     private inner class ExecutionEnvironmentListener : ExecutionListener {
 

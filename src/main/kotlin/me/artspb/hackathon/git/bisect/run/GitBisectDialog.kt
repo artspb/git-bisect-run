@@ -155,7 +155,7 @@ class GitBisectDialog(
     }
 
     fun getActions(): Triple<GitBisectRunState.Behavior, GitBisectRunState.Behavior, GitBisectRunState.Behavior> {
-        val values = GitBisectRunState.Behavior.values()
+        val values = GitBisectRunState.Behavior.entries.toTypedArray()
         val onZero = values[onZeroComboBox.selectedIndex]
         val onNonZero = values[onNonZeroComboBox.selectedIndex]
         val onNotStarted = values[onNotStartedComboBox.selectedIndex]
@@ -277,7 +277,7 @@ class GitBisectDialog(
                 )
 
             result = true
-        } catch (ignored: VcsException) {
+        } catch (_: VcsException) {
         }
         return result
     }
@@ -440,7 +440,7 @@ class GitBisectDialog(
             })
         }
 
-    private fun createComboBox() = ComboBox(GitBisectRunState.Behavior.values()).apply {
+    private fun createComboBox() = ComboBox(GitBisectRunState.Behavior.entries.toTypedArray()).apply {
         prototypeDisplayValue = GitBisectRunState.Behavior.GOOD
         setUI(FlatComboBoxUI(outerInsets = JBUI.insets(BW.get(), 0, BW.get(), 0)))
     }
@@ -448,7 +448,7 @@ class GitBisectDialog(
     private fun createPopupBuilder() = GitOptionsPopupBuilder(
         project,
         "Add Bisect Options",
-        { GitBisectOption.values().toList() },
+        { GitBisectOption.entries },
         ::getOptionInfo, ::isOptionSelected, { true }, ::optionChosen
     )
 
