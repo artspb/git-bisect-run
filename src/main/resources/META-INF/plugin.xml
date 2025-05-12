@@ -1,15 +1,191 @@
-<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.artspb.gitbisectrun</id>
-    <name>git-bisect-run</name>
-    <vendor>artspb</vendor>
+    <id>me.artspb.hackathon.git.bisect.run</id>
+    <!--suppress PluginXmlCapitalization -->
+    <name>git bisect run</name>
+    <vendor email="contact@artspb.me" url="https://artspb.me">Artem Khvastunov</vendor>
+
+    <change-notes><![CDATA[
+        <h3>0.8.8</h3>
+        <ul>
+          <li>2025.2 compatibility.</li>
+        </ul>
+        <h3>0.8.7</h3>
+        <ul>
+          <li>2025.1 compatibility.</li>
+        </ul>
+        <h3>0.8.6</h3>
+        <ul>
+          <li>2024.3 compatibility.</li>
+        </ul>
+        <h3>0.8.5</h3>
+        <ul>
+          <li>2024.2 compatibility.</li>
+        </ul>
+        <h3>0.8.4</h3>
+        <ul>
+          <li>2024.1 compatibility.</li>
+        </ul>
+        <h3>0.8.3</h3>
+        <ul>
+          <li>2023.3 compatibility.</li>
+        </ul>
+        <h3>0.8.2</h3>
+        <ul>
+          <li>Allow opening the UI from a range of commits.</li>
+          <li>Display error output when available.</li>
+        </ul>
+        <h3>0.8.1</h3>
+        <ul>
+          <li>Disable the 'Bisect...' action in Git log if there's no log.</li>
+        </ul>
+        <h3>0.8</h3>
+        <ul>
+          <li>Rework the dialog.</li>
+        </ul>
+        <h3>0.7.8</h3>
+        <ul>
+          <li>2031.2 compatibility.</li>
+        </ul>
+        <h3>0.7.7</h3>
+        <ul>
+          <li>2031.1 compatibility.</li>
+        </ul>
+        <h3>0.7.6</h3>
+        <ul>
+          <li>2022.3 compatibility.</li>
+        </ul>
+        <h3>0.7.5</h3>
+        <ul>
+          <li>2022.2 compatibility.</li>
+        </ul>
+        <h3>0.7.4</h3>
+        <ul>
+          <li>2022.1 compatibility.</li>
+        </ul>
+        <h3>0.7.3</h3>
+        <ul>
+          <li>2021.3 compatibility.</li>
+        </ul>
+        <h3>0.7.2</h3>
+        <ul>
+          <li>Fix exception that occurs when working with test results.</li>
+        </ul>
+        <h3>0.7.1</h3>
+        <ul>
+          <li>2021.2 compatibility.</li>
+        </ul>
+        <h3>0.7</h3>
+        <ul>
+          <li>2020.3 compatibility.</li>
+          <li>Add Bisect to the Run menu.</li>
+          <li>Add Bisect to Git log (available on one or two selected commits).</li>
+          <li>Add option to rely on test results instead of the exit code.</li>
+          <li>Store previous bad/good revisions.</li>
+          <li>Provide detailed information on error.</li>
+          <li>Improve handling of a run configuration during indexing.</li>
+          <li>Add good, bad, and skip actions to the Run menu.</li>
+          <li>Add the Retry action to the error notification.</li>
+          <li>Allow starting bisect from context.</li>
+        </ul>
+        <h3>0.6</h3>
+        <ul>
+          <li>2021.1 compatibility.</li>
+        </ul>
+        <h3>0.5.3</h3>
+        <ul>
+          <li>2020.3 compatibility.</li>
+        </ul>
+        <h3>0.5.2</h3>
+        <ul>
+          <li>2020.2 compatibility.</li>
+        </ul>
+        <h3>0.5.1</h3>
+        <ul>
+          <li>2020.1 EAP compatibility.</li>
+        </ul>
+        <h3>0.5</h3>
+        <ul>
+          <li>Add Show in Git Log action to the final notification.</li>
+        </ul>
+        <h3>0.4.4</h3>
+        <ul>
+          <li>Perform long operations under progress to prevent UI freezes.</li>
+        </ul>
+        <h3>0.4.3</h3>
+        <ul>
+          <li>Disable run icon for projects without Git repositories.</li>
+          <li>2020.1 compatibility.</li>
+        </ul>
+        <h3>0.4.2</h3>
+        <ul>
+          <li>2019.3 compatibility.</li>
+        </ul>
+        <h3>0.4.1</h3>
+        <ul>
+          <li>Added shortcuts to configuration index (a.k.a. searchable options).</li>
+          <li>2019.2 compatibility.</li>
+        </ul>
+        <h3>0.4</h3>
+        <ul>
+          <li>Added ability to choose how the plugin should react in different situations e.g. zero/non-zero exit code 
+          or broken compilation.</li>
+        </ul>
+        <h3>0.3.1</h3>
+        <ul>
+          <li>2019.1 compatibility.</li>
+        </ul>
+        <h3>0.3</h3>
+        <ul>
+          <li>Fixed possible infinite bisect due to wrong checkout.</li>
+        </ul>
+        <h3>0.2</h3>
+        <ul>
+          <li>Implemented 'Synchronize by Revision' action which works on commits.</li>
+        </ul>
+        <h3>0.1</h3>
+        <ul>
+          <li>Implemented 'git bisect run' action which works on run configurations.</li>
+        </ul>
+    ]]>
+    </change-notes>
 
     <depends>com.intellij.modules.platform</depends>
-
-    <resource-bundle>messages.MyBundle</resource-bundle>
+    <depends>Git4Idea</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.artspb.gitbisectrun.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="com.github.artspb.gitbisectrun.startup.MyProjectActivity" />
+        <executor implementation="me.artspb.hackathon.git.bisect.run.GitBisectExecutor" />
+        <programRunner implementation="me.artspb.hackathon.git.bisect.run.GitBisectProgramRunner"/>
     </extensions>
+
+    <actions>
+        <group id="Git.Bisect" popup="true" text="Bisect">
+            <action id="Git.Bisect.Good"
+                    class="me.artspb.hackathon.git.bisect.run.action.GitBisectGoodAction"
+                    text="Good">
+            </action>
+            <action id="Git.Bisect.Bad"
+                    class="me.artspb.hackathon.git.bisect.run.action.GitBisectBadAction"
+                    text="Bad">
+            </action>
+            <action id="Git.Bisect.Skip"
+                    class="me.artspb.hackathon.git.bisect.run.action.GitBisectSkipAction"
+                    text="Skip">
+            </action>
+            <action id="Git.Bisect.Reset"
+                    class="me.artspb.hackathon.git.bisect.run.action.GitBisectResetAction"
+                    text="Reset">
+            </action>
+
+            <add-to-group group-id="Git.MainMenu" anchor="after" relative-to-action="Git.Rebase"/>
+        </group>
+
+        <action id="Git.Bisect.Run.In.Log"
+                class="me.artspb.hackathon.git.bisect.run.action.GitBisectRunInLogAction"
+                text="Bisect..."
+                icon="Icons.GIT_BISECT_RUN">
+            <add-to-group group-id="Git.FileHistory.ContextMenu" anchor="after" relative-to-action="Git.Reset.In.Log"/>
+            <add-to-group group-id="Git.Log.ContextMenu" anchor="after" relative-to-action="Git.Reset.In.Log"/>
+        </action>
+    </actions>
+
 </idea-plugin>
