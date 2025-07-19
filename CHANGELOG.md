@@ -5,6 +5,9 @@
 ## [Unreleased]
 ### Added
 
+## [0.8.9]
+- 2025.3 compatibility.
+
 ## [0.8.8]
 - 2025.2 compatibility.
 
