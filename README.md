@@ -1,8 +1,8 @@
 # git-bisect-run
 
-![Build](https://github.com/artspb/git-bisect-run/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/10874-git-bisect-run.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/10874-git-bisect-run.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
+[![Build](https://github.com/artspb/git-bisect-run/workflows/Build/badge.svg)](https://github.com/artspb/git-bisect-run/actions)
+[![Version](https://img.shields.io/jetbrains/plugin/v/10874-git-bisect-run.svg)](https://plugins.jetbrains.com/plugin/10874-git-bisect-run)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/10874-git-bisect-run.svg)](https://plugins.jetbrains.com/plugin/10874-git-bisect-run)
 
 <!-- Plugin description -->
 The plugin brings 'git bisect run' functionality to the IntelliJ platform.
