@@ -2,6 +2,7 @@ import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.intellij.platform.gradle.IntelliJPlatformType
 import org.jetbrains.intellij.platform.gradle.TestFrameworkType
+import org.jetbrains.intellij.platform.gradle.tasks.VerifyPluginTask
 
 plugins {
     id("java") // Java support
@@ -106,6 +107,14 @@ intellijPlatform {
     }
 
     pluginVerification {
+        // ShowCommitInLogAction is @Internal and @OverrideOnly but intentionally used in GitBisectRunState.
+        // The plugin verifier's ignoredProblemsFile only filters the report files, not the stdout that
+        // the Gradle task checks, so we suppress these two categories at the level that actually works.
+        failureLevel = VerifyPluginTask.FailureLevel.entries.filter {
+            it != VerifyPluginTask.FailureLevel.INTERNAL_API_USAGES &&
+            it != VerifyPluginTask.FailureLevel.OVERRIDE_ONLY_API_USAGES
+        }
+
         ides {
             create(IntelliJPlatformType.IntellijIdeaCommunity, "2025.1")
             create(IntelliJPlatformType.IntellijIdeaUltimate, "2025.1")

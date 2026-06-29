@@ -1,0 +1,6 @@
+# ShowCommitInLogAction is @Internal and @OverrideOnly but intentionally used in GitBisectRunState.infoWithResetAndCheckout
+
+Internal class com\.intellij\.vcs\.log\.ui\.actions\.ShowCommitInLogAction is referenced in .*show\$1\$1
+Internal method com\.intellij\.vcs\.log\.ui\.actions\.ShowCommitInLogAction\.getRevisionNumber.*is overridden in class .*show\$1\$1
+Internal constructor com\.intellij\.vcs\.log\.ui\.actions\.ShowCommitInLogAction\.<init>\(\) is invoked in .*show\$1\$1
+Override-only method com\.intellij\.vcs\.log\.ui\.actions\.ShowCommitInLogAction\.actionPerformed.*is invoked in .*infoWithResetAndCheckout
