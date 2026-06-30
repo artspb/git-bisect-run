@@ -5,9 +5,11 @@
 ## [Unreleased]
 
 ## [0.8.11]
+
 - 2026.3 compatibility.
 
 ## [0.8.10]
+
 - 2026.1 compatibility.
 
 ## [0.8.9]
@@ -155,7 +157,9 @@
 
 - Implemented 'git bisect run' action which works on run configurations.
 
-[Unreleased]: https://github.com/artspb/git-bisect-run/compare/v0.8.9...HEAD
+[Unreleased]: https://github.com/artspb/git-bisect-run/compare/v0.8.11...HEAD
+[0.8.11]: https://github.com/artspb/git-bisect-run/compare/v0.8.10...v0.8.11
+[0.8.10]: https://github.com/artspb/git-bisect-run/compare/v0.8.9...v0.8.10
 [0.8.9]: https://github.com/artspb/git-bisect-run/compare/v0.8.8...v0.8.9
 [0.8.8]: https://github.com/artspb/git-bisect-run/compare/v0.8.7...v0.8.8
 [0.8.7]: https://github.com/artspb/git-bisect-run/compare/v0.8.6...v0.8.7
