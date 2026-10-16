@@ -71,4 +71,5 @@ Adding a module that also exists in the older platform is harmless, so the modul
 ## Housekeeping
 
 - Dependabot bumps the Gradle wrapper, Gradle plugins, and Actions. The `gradleVersion` property in `gradle.properties`
-  only feeds the `wrapper` task and can lag behind `gradle/wrapper/gradle-wrapper.properties`.
+  only feeds the `wrapper` task, and Dependabot doesn't touch it. After a wrapper bump, set it to the version in
+  `gradle/wrapper/gradle-wrapper.properties`. Otherwise `./gradlew wrapper` silently downgrades the wrapper.
