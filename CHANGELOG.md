@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+## [0.8.12]
+- 2027.1 compatibility.
+
 ## [0.8.11]
 
 - 2026.3 compatibility.
